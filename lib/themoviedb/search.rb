@@ -7,6 +7,7 @@ module Tmdb
     end
 
     def query(query)
+      Rails.logger.debug("calling query with #{query}")
       @params[:query] = "#{query}"
       self
     end
@@ -22,6 +23,7 @@ module Tmdb
     end
 
     def resource(resource)
+      Rails.logger.debug("calling resource with #{resource}")
       @resource = case resource
       when 'movie'
         '/search/movie'
@@ -39,6 +41,8 @@ module Tmdb
         '/search/keyword'
       when 'find'
         '/find'
+      when 'myfind'  
+        '/find'        
       end
       self
     end

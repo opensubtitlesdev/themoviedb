@@ -25,6 +25,12 @@ module Tmdb
       search.filter(conditions)
       search.fetch_response
     end
+    
+    def self.detail_imdb_id(id, conditions={})
+      search = Tmdb::Search.new("/#{self.endpoints[:singular]}/#{self.endpoint_id + id.to_s}")
+      search.filter(conditions)
+      search.fetch_response(external_source: 'imdb_id')
+    end
 
     def self.list(conditions={})
       search = Tmdb::Search.new("/#{self.endpoints[:plural]}")
@@ -43,9 +49,32 @@ module Tmdb
       end
     end
 
-    class << self
-      alias_method :find, :search
+    def self.find(query)
+      search = Tmdb::Search.new
+      search.resource("#{self.endpoints[:singular]}")
+      search.query(query)
+      search.fetch.collect do |result|
+        self.new(result)
+      end
     end
+    def self.myfind(query)
+        Rails.logger.debug("calling myfind with #{query}  endpoint=#{self.endpoints[:singular]}")
+        search = Tmdb::Search.new
+        search.resource("find")
+        search.query(query)
+        search.fetch.collect do |result|
+          self.new(result)
+        end
+    end
+    def self.myfind_imdb_id(id, conditions={})
+      search = Tmdb::Search.new("/find/#{self.endpoint_id + id.to_s}")
+      search.filter(conditions)
+      search.fetch_response(external_source: 'imdb_id')
+    end
+
+    #class << self
+    #  alias_method :find, :search
+    #end
 
     def initialize(attributes={})
       attributes.each do |key, value|

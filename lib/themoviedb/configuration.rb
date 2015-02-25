@@ -1,4 +1,10 @@
 module Tmdb
+  #class Railties < ::Rails::Railtie
+  #    initializer 'Rails logger' do
+  #      Tmdb.logger = Rails.logger
+  #    end
+  #end
+  
   class Configuration
     def initialize()
       @params = {}

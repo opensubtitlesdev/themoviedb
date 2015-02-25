@@ -25,6 +25,7 @@ module Tmdb
       :poster_path,
       :seasons,
       :status,
+      :videos,
       :vote_average,
       :vote_count,
       :credits,
@@ -64,6 +65,13 @@ module Tmdb
     def self.crew(id, conditions={})
       search = Tmdb::Search.new("/#{self.endpoints[:singular]}/#{self.endpoint_id + id.to_s}/credits")
       search.fetch_response.crew
+    end
+    
+    
+    #Get the video trailers for a TV series.
+    def self.videos(id, conditions={})
+      search = Tmdb::Search.new("/#{self.endpoints[:singular]}/#{self.endpoint_id + id.to_s}/videos")
+      search.fetch_response
     end
 
     #Get the external ids that we have stored for a TV series.
