@@ -22,7 +22,7 @@ module Tmdb
     end
     
     #Get the video trailers for a TV series.
-     def self.videos(id, conditions={})
+     def self.videos(id, season, conditions={})
        search = Tmdb::Search.new("/tv/#{self.endpoint_id + id.to_s}/#{self.endpoints[:singular]}/#{self.endpoint_id + season.to_s}/videos")
        search.fetch_response
      end
