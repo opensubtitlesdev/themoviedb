@@ -20,6 +20,12 @@ module Tmdb
       search = Tmdb::Search.new("/tv/#{self.endpoint_id + id.to_s}/#{self.endpoints[:singular]}/#{self.endpoint_id + season.to_s}/credits")
       search.fetch_response['crew']
     end
+    
+    #Get the video trailers for a TV series.
+     def self.videos(id, conditions={})
+       search = Tmdb::Search.new("/tv/#{self.endpoint_id + id.to_s}/#{self.endpoints[:singular]}/#{self.endpoint_id + season.to_s}/videos")
+       search.fetch_response
+     end
 
     #Get the external ids that we have stored for a TV season by season number.
     def self.external_ids(id, season, conditions={})

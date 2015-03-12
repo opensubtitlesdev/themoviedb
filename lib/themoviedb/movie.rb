@@ -119,7 +119,7 @@ module Tmdb
     #Get the trailers for a specific movie id.
     def self.trailers(id, conditions={})
       search = Tmdb::Search.new("/#{self.endpoints[:singular]}/#{self.endpoint_id + id.to_s}/trailers")
-      search.fetch_response
+      search.fetch_response['youtube']
     end
 
     #Get the translations for a specific movie id.
