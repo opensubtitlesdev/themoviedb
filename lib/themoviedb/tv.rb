@@ -60,13 +60,26 @@ module Tmdb
       search = Tmdb::Search.new("/#{self.endpoints[:singular]}/#{self.endpoint_id + id.to_s}/credits")
       search.fetch_response['cast']
     end
+    #Get the credits for a specific movie id.
+    def self.credits(id, conditions={})
+      search = Tmdb::Search.new("/#{self.endpoints[:singular]}/#{self.endpoint_id + id.to_s}/credits")
+      search.fetch_response
+    end
+    
 
     #Get the crew information about a TV series.
     def self.crew(id, conditions={})
       search = Tmdb::Search.new("/#{self.endpoints[:singular]}/#{self.endpoint_id + id.to_s}/credits")
       search.fetch_response['crew']
     end
+    #Get the similar movies for a specific tv id.
+    def self.similar_tv(id, conditions={})
+      search = Tmdb::Search.new("/#{self.endpoints[:singular]}/#{self.endpoint_id + id.to_s}/similar")
+      search.filter(conditions)
+      search.fetch
+    end
     
+
     
     #Get the video trailers for a TV series.
     def self.videos(id, conditions={})
