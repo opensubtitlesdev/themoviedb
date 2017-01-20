@@ -1,14 +1,10 @@
 ## Information
 
-# This repository is no longer maintained.
-
-Issue reports and pull requests will not be attended.
-
-### themoviedb [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/ahmetabdi/themoviedb/trend.png)](https://bitdeli.com/free "Bitdeli Badge") [![Build Status](https://travis-ci.org/ahmetabdi/themoviedb.png?branch=master)](https://travis-ci.org/ahmetabdi/themoviedb) [![Gem Version](https://badge.fury.io/rb/themoviedb.png)](http://badge.fury.io/rb/themoviedb)
+### themoviedb [![Code Climate](https://codeclimate.com/github/ahmetabdi/themoviedb/badges/gpa.svg)](https://codeclimate.com/github/ahmetabdi/themoviedb) [![Gem Version](https://badge.fury.io/rb/themoviedb.png)](http://badge.fury.io/rb/themoviedb)
 
 A Ruby wrapper for the [The Movie Database API](http://docs.themoviedb.apiary.io/).
 
-Ruby >= 1.9.3
+`Ruby >= 1.9.3`
 
 Provides a simple, easy to use interface for the Movie Database API.
 
@@ -16,8 +12,8 @@ Get your API key [here](https://www.themoviedb.org/account).
 
 ## Getting started
 
-```ruby
-gem install themoviedb
+```bash
+$ gem install themoviedb
 ```
 
 Example usage of the 'themovedb' gem
@@ -446,7 +442,7 @@ Tmdb::Job.list
 
 themoviedb - A ruby wrapper for the movie database API
 
-Copyright (C) 2014  Ahmet Abdi
+Copyright (C) 2016  Ahmet Abdi
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
