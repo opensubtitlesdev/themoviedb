@@ -25,6 +25,7 @@ module Tmdb
       :poster_path,
       :seasons,
       :status,
+      :translations,
       :videos,
       :vote_average,
       :vote_count,
@@ -45,6 +46,11 @@ module Tmdb
     # Get the list of top rated TV shows. By default, this list will only include TV shows that have 2 or more votes. This list refreshes every day.
     def self.top_rated
       search = Tmdb::Search.new('/tv/top_rated')
+      search.fetch.collect { |result| new(result) }
+    end
+    
+    def self.on_the_air      
+      search = Tmdb::Search.new('/tv/on_the_air')
       search.fetch.collect { |result| new(result) }
     end
 
@@ -79,7 +85,11 @@ module Tmdb
       search.fetch
     end
     
-
+    # Get the translations for a specific tv id.
+    def self.translations(id, _conditions = {})
+      search = Tmdb::Search.new("/#{endpoints[:singular]}/#{endpoint_id + id.to_s}/translations")
+      search.fetch_response
+    end
     
     #Get the video trailers for a TV series.
     def self.videos(id, conditions={})

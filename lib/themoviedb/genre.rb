@@ -31,6 +31,17 @@ module Tmdb
       search = Tmdb::Search.new('/genre/list')
       search.fetch_response
     end
+    
+    def self.movie_list
+      search = Tmdb::Search.new('/genre/movie/list')
+      search.fetch_response
+    end
+    def self.tv_list
+      search = Tmdb::Search.new('/genre/tv/list')
+      search.fetch_response
+    end
+    
+    
 
     def self.detail(id, conditions = {})
       url = "/genre/#{id}/movies"
