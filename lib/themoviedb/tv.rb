@@ -53,6 +53,11 @@ module Tmdb
       search = Tmdb::Search.new('/tv/on_the_air')
       search.fetch.collect { |result| new(result) }
     end
+    
+    def self.airing_today      
+       search = Tmdb::Search.new('/tv/airing_today')
+       search.fetch.collect { |result| new(result) }
+     end
 
     # Discover TV shows by different types of data like average rating, number of votes, genres, the network they aired on and air dates
     def self.discover(conditions = {})
