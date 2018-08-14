@@ -38,16 +38,29 @@ module Tmdb
     end
 
     # Get the list of popular TV shows. This list refreshes every day.
-    def self.popular
-      search = Tmdb::Search.new('/tv/popular')
+    def self.popular(page=1)     
+      search = Tmdb::Search.new("/tv/popular?page=#{page}")
       search.fetch.collect { |result| new(result) }
     end
+    
+    
+    def self.popular_pages
+        search = Tmdb::Search.new("/tv/popular")
+        search.pages
+     end
+   
+    
 
     # Get the list of top rated TV shows. By default, this list will only include TV shows that have 2 or more votes. This list refreshes every day.
-    def self.top_rated
-      search = Tmdb::Search.new('/tv/top_rated')
+    def self.top_rated(page=1)     
+      search = Tmdb::Search.new("/tv/top_rated?page=#{page}")
       search.fetch.collect { |result| new(result) }
     end
+    
+    def self.top_rated_pages
+        search = Tmdb::Search.new("/tv/top_rated")
+        search.pages
+     end
     
     def self.on_the_air_pages
        search = Tmdb::Search.new("/tv/on_the_air")
@@ -60,10 +73,16 @@ module Tmdb
       search.fetch.collect { |result| new(result) }
     end
     
-    def self.airing_today      
-       search = Tmdb::Search.new('/tv/airing_today')
+    def self.airing_today(page=1)      
+       search = Tmdb::Search.new('/tv/airing_today?page=#{page}')
        search.fetch.collect { |result| new(result) }
      end
+     
+     def self.airing_today_pages
+         search = Tmdb::Search.new("/tv/airing_today")
+         search.pages
+      end
+     
 
     # Discover TV shows by different types of data like average rating, number of votes, genres, the network they aired on and air dates
     def self.discover(conditions = {})
