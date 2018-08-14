@@ -49,8 +49,14 @@ module Tmdb
       search.fetch.collect { |result| new(result) }
     end
     
-    def self.on_the_air      
-      search = Tmdb::Search.new('/tv/on_the_air')
+    def self.on_the_air_pages
+       search = Tmdb::Search.new("/tv/on_the_air")
+       search.pages
+    end
+    
+    
+    def self.on_the_air(page=1)      
+      search = Tmdb::Search.new("/tv/on_the_air?page=#{page}")
       search.fetch.collect { |result| new(result) }
     end
     

@@ -62,6 +62,11 @@ module Tmdb
     def fetch
       fetch_response['results']
     end
+    
+    def pages
+      response = Api.get(@resource, query: Api.config)
+      response.parsed_response["total_pages"]
+    end
 
     # Send back whole response
     def fetch_response(conditions = {})
