@@ -74,7 +74,7 @@ module Tmdb
     end
     
     def self.airing_today(page=1)      
-       search = Tmdb::Search.new('/tv/airing_today?page=#{page}')
+       search = Tmdb::Search.new("/tv/airing_today?page=#{page}")
        search.fetch.collect { |result| new(result) }
      end
      
