@@ -2,7 +2,7 @@ module Tmdb
   class Search
     def initialize(resource = nil)
       @params = {}
-      @resource = resource.nil? ? '/search/movie' : resource
+      @resource = resource.nil? ? "/search/movie" : resource
       self
     end
 
@@ -24,25 +24,28 @@ module Tmdb
     def resource(resource)
       Rails.logger.debug("calling resource with #{resource}")
       @resource = case resource
-      when 'movie'
-        '/search/movie'
-      when 'collection'
-        '/search/collection'
-      when 'tv'
-        '/search/tv'
-      when 'person'
-        '/search/person'
-      when 'list'
-        '/search/list'
-      when 'company'
-        '/search/company'
-      when 'keyword'
-        '/search/keyword'
-      when 'find'
-        '/find'
-      when 'myfind'  
-        '/find'        
-      end
+
+        when "movie"
+          "/search/movie"
+        when "collection"
+          "/search/collection"
+        when "tv"
+          "/search/tv"
+        when "person"
+          "/search/person"
+        when "list"
+          "/search/list"
+        when "company"
+          "/search/company"
+        when "keyword"
+          "/search/keyword"
+        when "multi"
+          "/search/multi"
+        when "find"
+          "/find"
+        when "myfind"
+          "/find"
+        end
       self
     end
 
@@ -60,9 +63,9 @@ module Tmdb
 
     # Sends back main data
     def fetch
-      fetch_response['results']
+      fetch_response["results"]
     end
-    
+
     def pages
       response = Api.get(@resource, query: Api.config)
       response.parsed_response["total_pages"]
@@ -77,10 +80,10 @@ module Tmdb
       end
       response = Api.get(@resource, query: options)
 
-      original_etag = response.headers.fetch('etag', '')
+      original_etag = response.headers.fetch("etag", "")
       etag = original_etag.delete('"')
 
-      Api.set_response('code' => response.code, 'etag' => etag)
+      Api.set_response("code" => response.code, "etag" => etag)
       response.to_hash
     end
   end
