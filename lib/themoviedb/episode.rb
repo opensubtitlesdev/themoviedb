@@ -38,7 +38,10 @@ module Tmdb
       search = Tmdb::Search.new("/tv/#{self.endpoint_id + id.to_s}/season/#{self.endpoint_id + season.to_s}/#{self.endpoints[:singular]}/#{self.endpoint_id + episode.to_s}/videos")
       search.fetch_response['results']
     end
-      
+    def self.translations(id, _conditions = {})
+      search = Tmdb::Search.new("/tv/#{endpoint_id + id.to_s}/season/#{endpoint_id + season.to_s}/#{endpoints[:singular]}/#{endpoint_id + episode.to_s}/translations")
+      search.fetch_response
+    end
     #Get the images (episode stills) for a TV episode by combination of a season and episode number.
   # def self.images(id, season, episode, conditions={})
   #   search = Tmdb::Search.new("/tv/#{self.endpoint_id + id.to_s}/season/#{self.endpoint_id + season.to_s}/#{self.endpoints[:singular]}/#{self.endpoint_id + episode.to_s}/images")
